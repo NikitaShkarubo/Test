@@ -1,0 +1,13 @@
+<response>
+  <content>
+  <comments>
+  {% for one in article %}
+    <comment>
+      <id>{{one.id}}</id>
+      <title>{{one.title}}</title>
+      <content>{{one.content}}</content>
+    </comment>
+  {% endfor %}
+  </comments>
+  </content>
+</response>
