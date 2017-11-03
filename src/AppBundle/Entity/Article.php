@@ -28,6 +28,16 @@ class Article
     private $content;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $institution;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="article", cascade={"persist"})
      */
     private $comments;
@@ -71,5 +81,94 @@ class Article
         $this->content = $content;
 
         return $this;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set institution
+     *
+     * @param string $institution
+     *
+     * @return Article
+     */
+    public function setInstitution($institution)
+    {
+        $this->institution = $institution;
+
+        return $this;
+    }
+
+    /**
+     * Get institution
+     *
+     * @return string
+     */
+    public function getInstitution()
+    {
+        return $this->institution;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Article
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set type
+     *
+     * @param boolean $type
+     *
+     * @return Article
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return boolean
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

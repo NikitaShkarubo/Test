@@ -28,6 +28,11 @@ class Comment
     private $content;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $link;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Article", inversedBy="comments", cascade={"persist"})
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
@@ -90,5 +95,29 @@ class Comment
         $this->article = $article;
 
         return $this;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     *
+     * @return Comment
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 }
